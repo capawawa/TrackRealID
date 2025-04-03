@@ -121,7 +121,7 @@ async function sendNotification(type, count) {
       from: config.email.sender,
       to: config.email.recipient,
       subject: config.email.subject,
-      text: `ALERT: ${count} REAL ID appointments now available at ${siteName}! Check ${config.urls[type]}`
+      text: `${config.urls[type]} - ${count} REAL ID appts at ${siteName}!`
     };
     
     await transporter.sendMail(mailOptions);
