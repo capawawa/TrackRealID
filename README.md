@@ -2,6 +2,8 @@
 
 A Node.js application that monitors the New Jersey MVC websites for REAL ID appointment availability and sends notifications when appointments become available. Can be run directly or using Docker for cross-platform compatibility.
 
+> **New to this project?** Check out the [Complete Guide](README-Guide.md) for a comparison of all the different ways to run this tracker on Windows, Linux, and macOS.
+
 ## Features
 
 - Monitors both regular DMV and mobile unit websites for REAL ID appointments
