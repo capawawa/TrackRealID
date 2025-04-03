@@ -4,6 +4,12 @@
 module.exports = {
   // URLs to check for appointments
   urls: {
+    regular: 'https://telegov.njportal.com/njmvc/AppointmentWizard',
+    mobile: 'https://telegov.njportal.com/njmvcmobileunit/AppointmentWizard'
+  },
+  
+  // URLs to send in notifications
+  notificationUrls: {
     regular: 'https://telegov.njportal.com/njmvc/AppointmentWizard/12',
     mobile: 'https://telegov.njportal.com/njmvcmobileunit/AppointmentWizard'
   },
