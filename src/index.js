@@ -117,11 +117,13 @@ async function sendNotification(type, count) {
     
     const siteName = type === 'regular' ? 'Regular DMV' : 'Mobile Unit';
     
+    const notificationUrl = config.notificationUrls[type];
+    
     const mailOptions = {
       from: config.email.sender,
       to: config.email.recipient,
       subject: config.email.subject,
-      text: `${config.urls[type]} - ${count} REAL ID appts at ${siteName}!`
+      text: `${notificationUrl} - ${count} REAL ID appts at ${siteName}!`
     };
     
     await transporter.sendMail(mailOptions);
