@@ -1,0 +1,25 @@
+# Git
+.git
+.gitignore
+
+# Logs
+*.log
+npm-debug.log*
+
+# Dependencies
+node_modules/
+
+# Docker files (no need to copy these into the image)
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# HTML files (these are just for reference)
+*.html
+
+# Scripts for non-Docker usage
+start-tracker.sh
+stop-tracker.sh
+
+# Misc
+.DS_Store
