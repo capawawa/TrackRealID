@@ -4,12 +4,12 @@
 module.exports = {
   // URLs to check for appointments
   urls: {
-    regular: 'https://telegov.njportal.com/njmvc/AppointmentWizard',
+    regular: 'https://telegov.njportal.com/njmvc/AppointmentWizard/12',
     mobile: 'https://telegov.njportal.com/njmvcmobileunit/AppointmentWizard'
   },
   
   // Check interval in minutes
-  checkIntervalMinutes: 30,
+  checkIntervalMinutes: 10,
   
   // Email configuration
   email: {
@@ -19,7 +19,7 @@ module.exports = {
     recipient: '7329957580@vtext.com',
     // App password for Gmail (you'll need to generate this)
     // See: https://support.google.com/accounts/answer/185833
-    password: '', // You'll need to fill this in
+    password: 'zczq xbiu hbrg wved', // Gmail app password
     // Email subject
     subject: 'REAL ID Appointment Available!',
   },
