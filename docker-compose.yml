@@ -6,10 +6,22 @@ services:
     container_name: real-id-tracker
     restart: unless-stopped
     volumes:
-      # Mount the config file so it can be edited without rebuilding
-      - ./src/config.js:/app/src/config.js
       # Mount the log file so it persists and can be viewed from the host
       - ./tracker.log:/app/tracker.log
     # Use the same timezone as the host
     environment:
       - TZ=America/New_York
+      # Load environment variables from .env file
+      - TRACKER_REGULAR_URL=${TRACKER_REGULAR_URL}
+      - TRACKER_MOBILE_URL=${TRACKER_MOBILE_URL}
+      - TRACKER_REGULAR_NOTIFICATION_URL=${TRACKER_REGULAR_NOTIFICATION_URL}
+      - TRACKER_MOBILE_NOTIFICATION_URL=${TRACKER_MOBILE_NOTIFICATION_URL}
+      - TRACKER_CHECK_INTERVAL=${TRACKER_CHECK_INTERVAL:-10}
+      - TRACKER_EMAIL_SENDER=${TRACKER_EMAIL_SENDER}
+      - TRACKER_EMAIL_RECIPIENT=${TRACKER_EMAIL_RECIPIENT}
+      - TRACKER_EMAIL_PASSWORD=${TRACKER_EMAIL_PASSWORD}
+      - TRACKER_EMAIL_SUBJECT=${TRACKER_EMAIL_SUBJECT}
+      - TRACKER_LOG_FILE=${TRACKER_LOG_FILE:-tracker.log}
+    # Uncomment to use a .env file directly
+    # env_file:
+    #   - .env
