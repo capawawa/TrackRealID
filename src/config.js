@@ -1,35 +1,48 @@
 /**
  * Configuration for the REAL ID Appointment Tracker
+ * 
+ * Sensitive information like passwords can be provided via environment variables:
+ * - TRACKER_EMAIL_SENDER: Email address to send notifications from
+ * - TRACKER_EMAIL_RECIPIENT: Email address to send notifications to
+ * - TRACKER_EMAIL_PASSWORD: App password for Gmail
+ * - TRACKER_CHECK_INTERVAL: Check interval in minutes
  */
+
+// Helper function to get environment variable with fallback
+function getEnv(key, defaultValue) {
+  return process.env[key] || defaultValue;
+}
+
 module.exports = {
   // URLs to check for appointments
   urls: {
-    regular: 'https://telegov.njportal.com/njmvc/AppointmentWizard',
-    mobile: 'https://telegov.njportal.com/njmvcmobileunit/AppointmentWizard'
+    regular: getEnv('TRACKER_REGULAR_URL', 'https://telegov.njportal.com/njmvc/AppointmentWizard'),
+    mobile: getEnv('TRACKER_MOBILE_URL', 'https://telegov.njportal.com/njmvcmobileunit/AppointmentWizard')
   },
   
   // URLs to send in notifications
   notificationUrls: {
-    regular: 'https://telegov.njportal.com/njmvc/AppointmentWizard/12',
-    mobile: 'https://telegov.njportal.com/njmvcmobileunit/AppointmentWizard'
+    regular: getEnv('TRACKER_REGULAR_NOTIFICATION_URL', 'https://telegov.njportal.com/njmvc/AppointmentWizard/12'),
+    mobile: getEnv('TRACKER_MOBILE_NOTIFICATION_URL', 'https://telegov.njportal.com/njmvcmobileunit/AppointmentWizard')
   },
   
   // Check interval in minutes
-  checkIntervalMinutes: 10,
+  checkIntervalMinutes: parseInt(getEnv('TRACKER_CHECK_INTERVAL', '10')),
   
   // Email configuration
   email: {
     // Sender email (Gmail)
-    sender: '[REDACTED_EMAIL]',
+    sender: getEnv('TRACKER_EMAIL_SENDER', '[REDACTED_EMAIL]'),
     // Recipient email (Verizon email-to-text)
-    recipient: '[REDACTED_RECIPIENT]',
+    recipient: getEnv('TRACKER_EMAIL_RECIPIENT', '[REDACTED_RECIPIENT]'),
     // App password for Gmail (you'll need to generate this)
     // See: https://support.google.com/accounts/answer/185833
-    password: '[REDACTED_APP_PASSWORD]', // Gmail app password
+    // IMPORTANT: Prefer to set this via environment variable
+    password: getEnv('TRACKER_EMAIL_PASSWORD', '[REDACTED_APP_PASSWORD]'), // Gmail app password
     // Email subject
-    subject: 'REAL ID Appointment Available!',
+    subject: getEnv('TRACKER_EMAIL_SUBJECT', 'REAL ID Appointment Available!'),
   },
   
   // Logging
-  logFile: 'tracker.log'
+  logFile: getEnv('TRACKER_LOG_FILE', 'tracker.log')
 };
