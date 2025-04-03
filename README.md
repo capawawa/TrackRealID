@@ -1,36 +1,42 @@
-# REAL ID Appointment Tracker
+# REAL ID Appointment Tracker (Enhanced Version)
 
-A Node.js application that monitors the New Jersey MVC websites for REAL ID appointment availability and sends notifications when appointments become available. Can be run directly or using Docker for cross-platform compatibility.
+A robust, feature-rich Node.js application that monitors the New Jersey MVC websites for REAL ID appointment availability and sends notifications when appointments become available. This enhanced version includes advanced error handling, improved parsing, structured logging, and many other reliability improvements.
 
-> **New to this project?** Check out the [Complete Guide](README-Guide.md) for a comparison of all the different ways to run this tracker on Windows, Linux, and macOS.
+## New Features & Enhancements
 
-## Features
+### Architecture & Code Quality
+- **Modular Design**: Completely refactored into logical modules for better maintainability
+- **Enhanced Error Handling**: Comprehensive error management with detailed reporting
+- **Configuration Validation**: Robust validation with helpful error messages
+- **Code Documentation**: Extensive JSDoc comments throughout the codebase
 
-- Monitors both regular DMV and mobile unit websites for REAL ID appointments
-- Checks for appointment availability every 10 minutes (configurable)
-- Sends SMS notifications via email-to-text when appointments become available
-- Logs all activity to both console and a log file
-- Robust error handling with retry mechanism and exponential backoff
-- Unified management script for easy control
-- Environment variable support for secure credential management
-- Docker support for cross-platform compatibility
+### Reliability Enhancements
+- **Multi-strategy HTML Parsing**: Multiple fallback strategies for parsing website data
+- **Structure Change Detection**: Automatic detection of website structure changes
+- **Self-healing Operation**: Graceful degradation and recovery from errors
+- **Advanced Retry Logic**: Exponential backoff with jitter for optimal retry behavior
+
+### User Experience Improvements
+- **Rich Notifications**: HTML email templates with detailed appointment information
+- **Historical Tracking**: Store and track appointment availability over time
+- **Enhanced Status Reporting**: Detailed status information and metrics
+- **Improved Testing**: Comprehensive test mode to validate all system components
+
+### Security & Performance
+- **Secure Credential Handling**: Improved security for sensitive configuration
+- **Resource Optimization**: Efficient memory and connection management
+- **Log Rotation**: Automatic log file rotation to prevent disk space issues
 
 ## Prerequisites
 
-### Option 1: Direct Installation
 - Node.js (v12 or higher)
 - npm (comes with Node.js)
-- A Gmail account to send notifications from
-
-### Option 2: Docker Installation
-- Docker and Docker Compose
 - A Gmail account to send notifications from
 
 ## Installation
 
 1. Clone or download this repository
 
-### Option 1: Direct Installation
 2. Install dependencies:
 
 ```bash
@@ -39,16 +45,9 @@ npm install
 
 3. Configure the application:
    - Copy `.env.example` to `.env` and edit the values
-   - Or edit `src/config.js` directly (not recommended for sensitive information)
-
-### Option 2: Docker Installation
-2. Configure the application:
-   - Copy `.env.example` to `.env` and edit the values
-   - Uncomment the `env_file` section in `docker-compose.yml` if you prefer to use the .env file directly
+   - Or set the environment variables directly
    
-3. No need to install dependencies - Docker will handle this automatically
-
-## Gmail App Password Setup
+### Gmail App Password Setup
 
 To send email notifications, you need to generate an "App Password" for your Gmail account:
 
@@ -60,161 +59,119 @@ To send email notifications, you need to generate an "App Password" for your Gma
 6. Copy the 16-character password
 7. Add it to your `.env` file as `TRACKER_EMAIL_PASSWORD`
 
+## Configuration Options
+
+The application supports the following configuration options:
+
+| Environment Variable | Description | Default |
+|----------------------|-------------|---------|
+| `TRACKER_REGULAR_URL` | URL of the regular DMV site | https://telegov.njportal.com/njmvc/AppointmentWizard |
+| `TRACKER_MOBILE_URL` | URL of the mobile unit site | https://telegov.njportal.com/njmvcmobileunit/AppointmentWizard |
+| `TRACKER_REGULAR_NOTIFICATION_URL` | URL to include in regular site notifications | https://telegov.njportal.com/njmvc/AppointmentWizard/12 |
+| `TRACKER_MOBILE_NOTIFICATION_URL` | URL to include in mobile site notifications | https://telegov.njportal.com/njmvcmobileunit/AppointmentWizard |
+| `TRACKER_CHECK_INTERVAL` | Check interval in minutes | 10 |
+| `TRACKER_EMAIL_SENDER` | Gmail address to send notifications from | |
+| `TRACKER_EMAIL_RECIPIENT` | Email address to send notifications to | |
+| `TRACKER_EMAIL_PASSWORD` | App password for Gmail | |
+| `TRACKER_EMAIL_SUBJECT` | Subject line for notification emails | REAL ID Appointment Available! |
+| `TRACKER_LOG_FILE` | Log file path | tracker.log |
+| `TRACKER_LOG_LEVEL` | Log level (debug, info, warn, error, fatal) | info |
+| `TRACKER_REQUEST_TIMEOUT` | HTTP request timeout in milliseconds | 30000 |
+| `TRACKER_MAX_RETRIES` | Maximum number of retries for failed operations | 3 |
+| `TRACKER_USER_AGENT` | User agent string for HTTP requests | Mozilla/5.0 (Windows NT 10.0; Win64; x64)... |
+
 ## Usage
 
-There are multiple ways to start, stop, and manage the tracker:
-
-### Using the Unified Management Script
-
-The `tracker.sh` script provides a unified interface for managing the tracker:
+### Using npm scripts
 
 ```bash
-# Make the script executable (first time only)
-chmod +x tracker.sh
-
 # Start the tracker
-./tracker.sh start
-
-# Stop the tracker
-./tracker.sh stop
-
-# Restart the tracker
-./tracker.sh restart
-
-# Check the status of the tracker
-./tracker.sh status
-
-# Run a single test check without starting the tracker
-./tracker.sh test
-
-# View the tracker logs
-./tracker.sh logs
-
-# Use Docker instead of direct execution
-./tracker.sh start -d
-./tracker.sh stop -d
-./tracker.sh status -d
-
-# Get help and see all available options
-./tracker.sh -h
-```
-
-### Traditional Methods
-
-#### Method 1: Direct start (stays running in terminal)
-
-```bash
 npm start
+
+# Run a test check
+npm test
+
+# Check tracker status
+npm run status
+
+# Show help
+npm run help
+
+# Show version
+npm run version
 ```
 
-#### Method 2: Background process (continues running after terminal is closed)
+### Using the Executable Directly
 
 ```bash
-./start-tracker.sh
+# Start the tracker
+node src/index.js
+
+# Run a test check
+node src/index.js test
+
+# Check tracker status
+node src/index.js status
+
+# Show help
+node src/index.js help
+
+# Show version
+node src/index.js version
 ```
 
-#### Method 3: Docker container (cross-platform, runs in background)
-
-```bash
-./docker-start.sh
-```
-
-The tracker will:
-1. Run an initial check immediately
-2. Schedule recurring checks every 10 minutes (configurable)
-3. Log all activity to both the console and `tracker.log`
-4. Send notifications when appointments become available
-
-## Stopping the Tracker
-
-If started with `npm start`, press `Ctrl+C` in the terminal where it's running.
-
-If started with `start-tracker.sh`, use:
-
-```bash
-./stop-tracker.sh
-```
-
-If started with Docker, use:
-
-```bash
-./docker-stop.sh
-```
-
-## Environment Variables
-
-The application supports the following environment variables:
+## Project Structure
 
 ```
-# URLs to check for appointments
-TRACKER_REGULAR_URL=https://telegov.njportal.com/njmvc/AppointmentWizard
-TRACKER_MOBILE_URL=https://telegov.njportal.com/njmvcmobileunit/AppointmentWizard
-
-# URLs to send in notifications
-TRACKER_REGULAR_NOTIFICATION_URL=https://telegov.njportal.com/njmvc/AppointmentWizard/12
-TRACKER_MOBILE_NOTIFICATION_URL=https://telegov.njportal.com/njmvcmobileunit/AppointmentWizard
-
-# Check interval in minutes
-TRACKER_CHECK_INTERVAL=10
-
-# Email configuration
-TRACKER_EMAIL_SENDER=your.email@gmail.com
-TRACKER_EMAIL_RECIPIENT=your.phone@vtext.com
-TRACKER_EMAIL_PASSWORD=your-app-password
-TRACKER_EMAIL_SUBJECT=REAL ID Appointment Available!
-
-# Logging
-TRACKER_LOG_FILE=tracker.log
+├── src/                  # Source code
+│   ├── models/           # Data models
+│   │   └── appointment.js # Appointment data model
+│   ├── services/         # Core services
+│   │   ├── notifier.js   # Notification service
+│   │   ├── scheduler.js  # Scheduling service
+│   │   └── scraper.js    # Web scraping service
+│   ├── utils/            # Utilities
+│   │   ├── config.js     # Configuration management
+│   │   └── logger.js     # Enhanced logging
+│   ├── app.js            # Core application logic
+│   └── index.js          # Command-line interface
+├── templates/            # Notification templates
+├── data/                 # Data storage
+├── debug/                # Debug files
+├── .env.example          # Example environment variables
+└── README.md             # Documentation
 ```
 
-## Docker Usage
+## Email Templates
 
-The Docker setup provides several advantages:
-- Works consistently across different operating systems (Windows, macOS, Linux)
-- Automatically restarts if the container crashes
-- No need to install Node.js on your system
-- Logs and configuration are accessible from the host system
+The application creates a default HTML email template in the `templates/` directory. You can customize this template to change the appearance of notification emails.
 
-### Viewing Docker Logs
-
-To see the live logs from the Docker container:
-
-```bash
-docker-compose logs -f
-# or
-./tracker.sh logs -d
-```
-
-### Updating the Docker Container
-
-If you make changes to the code and need to rebuild the Docker container:
-
-```bash
-docker-compose build
-docker-compose up -d
-```
+Variables in the template:
+- `{{locationType}}`: Regular DMV or Mobile Unit
+- `{{count}}`: Number of available appointments
+- `{{bookingUrl}}`: URL to book an appointment
+- `{{timestamp}}`: Date and time when the appointment was found
 
 ## Advanced Features
 
-### Error Handling and Reliability
+### Debugging Website Parsing Issues
 
-The tracker includes robust error handling:
-- Retry mechanism for failed website checks
-- Exponential backoff for repeated failures
-- Detailed error logging with different severity levels
-- HTML debugging for parsing failures
-- Graceful shutdown handling
+When the application has trouble parsing the website, it automatically saves the HTML content to the `debug/` directory with timestamps and reason codes. This makes it easier to diagnose and fix parsing issues if the website structure changes.
 
-### Configuration Validation
+### Appointment History
 
-The application validates its configuration on startup and provides helpful error messages if any required settings are missing.
+The application tracks appointment availability history in the `data/` directory. This can be useful to analyze patterns in appointment availability.
+
+### Structured Logging
+
+The enhanced logging system provides detailed logs with timestamps, context information, and log levels. You can adjust the verbosity using the `TRACKER_LOG_LEVEL` environment variable.
 
 ## Troubleshooting
 
 - **No notifications received**: Check the log file to see if there were any errors sending emails. Make sure your Gmail app password is correct.
-- **Website structure changed**: If the NJ MVC changes their website structure, the tracker may need to be updated to match the new HTML structure. HTML debugging files will be saved automatically if parsing fails.
-- **Process not stopping**: Use the force option to kill the process: `./tracker.sh stop -f`
-- **Multiple instances running**: Use `./tracker.sh status` to see all running instances and `./tracker.sh stop` to stop them all.
+- **Website structure changed**: The application will try multiple parsing strategies and detect structure changes automatically. Check the `debug/` directory for HTML snapshots.
+- **Process not stopping**: Press Ctrl+C to stop the process.
+- **Log files too large**: The application automatically rotates log files when they reach 10MB.
 
 ## License
 

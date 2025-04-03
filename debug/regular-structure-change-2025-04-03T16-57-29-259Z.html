@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base href="/njmvc/AppointmentWizard" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What service is needed? - TeleGov</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    <link href='https://fonts.googleapis.com/css?family=Palanquin:400,300,100,200,500,600,700' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,700italic,900,900italic" rel="stylesheet" type="text/css" />
+    <!-- CSS -->
+    
+<link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/lib/daterangepicker/daterangepicker.css" />
+<link rel="stylesheet" href="/lib/jquery-ui/jquery-ui.css" />
+<link rel="stylesheet" href="/lib/jquery-timepicker/jquery-timepicker.min.css" />
+<link rel="stylesheet" href="/lib/bootstrap-multiselect/bootstrap-multiselect.min.css" />
+<link rel="stylesheet" href="/lib/fontawesome5.13.0/css/all.css" />
+
+<link rel="stylesheet" href="/css/main_all-v3.css?v=cJHrfmUmaFPoGLmWEsXqBGNyg7-KqbzFwjbfIEF5GIs" />
+<link rel="stylesheet" href="/css/site.css?v=2sybOlusRWd8exRGdlfUFcAafWd1bHAiNZUylISfc4c" />
+    
+    
+
+        <link href="https://telegov.njportal.com/css/njmvc-v3.css" rel="stylesheet" type="text/css" />
+</head>
+<body class="intro">
+
+    
+<header id="header">
+
+    <a href="#mainContent" class="sr-only sr-only-focusable skipToContent">Skip to content</a>
+
+    <nav class="navbar navbar-expand-lg navbar-dark justify-content-between">
+
+        <div class="topnav top" id="myNotTopnav">
+            <div>
+                <a class="mdg-entNav__logo"><img src="https://www.njportal.com/styles/img/state_seal_white.png" alt="State Seal of New Jersey" title="State Seal of New Jersey"></a>
+            </div>
+
+            <div class="title-gov">OFFICIAL SITE OF THE STATE OF NEW JERSEY</div>
+
+            <a class="pull-right link-gov" href="https://nj.gov/governor/" target="_blank">
+                Governor Phil Murphy
+                •
+                Lt. Governor Tahesha Way
+            </a>
+
+
+        </div>
+    </nav>
+
+</header>
+
+
+
+<div class="tg-hero tg-hero--shaded">
+    <div class="tg-hero__heading">
+        <h1 class="tg-agency">
+                <span>New Jersey Motor Vehicle Commission</span>
+                <span class="tg-agency__name">NJ MVC Appointment Scheduling</span>
+        </h1>
+    </div>
+
+        <div class="tg-hero__logo">
+            <img class="tg-hero__brand__logo" src="https://www.nj.gov/mvc/2019-update/img/logo-no-tag.webp" alt="Logo">
+        </div>
+</div>
+
+
+
+
+
+    <nav class="navbar navbar-expand-lg navbar-dark justify-content-between">
+
+        <div class="topnav" id="myTopnav">
+            <div>
+             
+            </div>
+
+            <div class="navbar-collapse floatResponsive" id="navbarTogglerDemo02">
+                <ul class="navbar-items navbar-nav flex-row ml-md-auto d-md-flex">
+                    <li class="<nav>-item mb-2">
+                        <a ;" href="/njmvc">
+                            <span class="" aria-hidden="true" role="presentation"></span> Home
+                        </a>
+                    </li>
+                    <li class="<nav>-item mb-2">
+                        <a ;" href="/njmvc/Home/MyAppointment">
+                            <span class="" aria-hidden="true" role="presentation"></span> My Appointment
+                        </a>
+                    </li>
+
+                        <li class="nav-item mb-2">
+                            <a ;" href="/njmvc/Home/UserHelp">
+                                <span class="" aria-hidden="true" role="presentation"></span> Help
+                            </a>
+                        </li>
+                    <li class="nav-item mb-2 dropdown" style="max-width: 92px;">
+                        <a onclick="showHideTranslate(event)";" href="#" class="dropbtn">
+                            <span style='max-width: 15px;' class="" aria-hidden="true" role="presentation" focusable="false" data-prefix="fas" data-icon="globe"></span> Translate
+                        </a>
+                        <div id='defaultGoogleTranslateContainer' style='display:none'>
+                            <div id="google_translate_element"></div>
+                        </div>
+                        <div id='googleOptionContainer' style='display:none'>
+                        </div>
+
+                    </li>
+                    <li class="nav-item html-partial">
+                        
+
+<a style="text-decoration:none! important;" href="/Account/SignIn/NJMVCAzure?tenantCode=njmvc&amp;returnUrl=%2Fnjmvc%2FAppointmentWizard">
+    <span class="" aria-hidden="true" role="presentation"></span> Log in
+</a>
+
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <a href="javascript:void(0);" class="icon" onclick="toggleResponsiveMenu()">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+
+        </div>
+   
+        </nav>
+
+
+
+    <main id="mainContent" class="content-area">
+        
+
+<div class="container body-content mt-3">
+    <div class="mdg-loader" id="loader">
+        <div class="mdg-loader__dot"></div>
+        <div class="mdg-loader__dot"></div>
+        <div class="mdg-loader__dot"></div>
+        <div class="mdg-loader__dot"></div>
+        <div class="mdg-loader__dot"></div>
+        <div class="mdg-loader__dot"></div>
+        <div class="mdg-loader__dot"></div>
+        <div class="mdg-loader__dot"></div>
+    </div>
+    <div class="justify-content-center">
+    <div class=" card wizard-card">
+        <div class="wizard-header px-3">
+            <h2 class="h3">
+                What service is needed?<br>
+            </h2>
+        </div>
+        <ul class="justify-content-around nav nav-tabs nav-fill setup-panel">
+            <li class="nav-item active" style="color:white;">1. Appointment Type</li>
+            <li class="nav-item">2. Appointment Location</li>
+            <li class="nav-item">3. Date &amp; Time</li>
+            <li class="nav-item">4. Applicant Information</li>
+        </ul>
+
+        <form method="post">
+            <div class="row mx-2 setup-content" id="step-1">
+                <div class="col mt-4">
+
+                    
+
+                    <div class="row">
+                        <div class="col">
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                                                <div style='max-width:100%;'>
+
+                                                        <button type='button' class='groupBtn btn mb-2 accordion-heading collapse-closed' data-type='  Driver&#x2019;s License/Non-Driver ID Services'>
+                                                            <span>
+                                                                  Driver&#x2019;s License/Non-Driver ID Services
+                                                            </span>
+                                                        </button>
+                                                            <div class="cards cardContainer" style="display:none" data-type='  Driver&#x2019;s License/Non-Driver ID Services'>
+                                                                <fieldset>
+
+                                                                        <a class="overlay-card text-center text-underline cardButton" style="cursor:pointer;float:left;width:100%" tabindex="-1"
+                                                                         href="/njmvc/AppointmentWizard/15">
+
+                                                                            <div>                                                      
+
+                                                                                <span class="text-black text-uppercase cardButtonTitle" style="font-weight: bold; width: 100%;">
+                                                                                INITIAL PERMIT (BEFORE KNOWLEDGE TEST)
+                                                                                </span>
+                                                                                <br />
+                                                                                <span class="text-black cardButtonCount" style="display:block;padding-top:10px">
+                                                                                    72441 Appointments Available
+                                                                                </span>
+                                                                            </div>
+                                                                        </a>
+
+
+                                                                        <div class='overlay-card text-center cardDescription'>
+                                                                            <ul><li><strong>Excludes CDL &amp; Special Learner Permit</strong></li><li>Purchase an auto examination permit (Class D) (ages 17+)
+</li><li>Purchase a motorcycle permit (Class E) (ages 17+)
+</li><li>Purchase an agriculture permit (Class G) (ages 16-17)
+</li><li>Purchase a moped permit (Class F) (ages 15+)
+</li><li>Purchase a motorcycle license/add an endorsement (ages 17+)
+</li><li>Purchase a boat license (ages 16+)
+</li>
+<li>Upgrade auto license (After suspension)
+</li>
+</ul>
+                                                                                <ul>
+                                                                                    <li>
+                                                                                        <a style="text-decoration:underline;" target="_blank"
+                                                                                           rel="noopener noreferrer"
+                                                                                           href="https://www.state.nj.us/mvc/license/initiallicense.htm">
+                                                                                            Required Documents
+                                                                                        </a>
+                                                                                    </li>
+                                                                                </ul>
+                                                                        </div>
+                                                                </fieldset>
+
+                                                            </div>
+                                                            <div class="cards cardContainer" style="display:none" data-type='  Driver&#x2019;s License/Non-Driver ID Services'>
+                                                                <fieldset>
+
+                                                                        <a class="overlay-card text-center text-underline cardButton" style="cursor:pointer;float:left;width:100%" tabindex="-1"
+                                                                         href="/njmvc/AppointmentWizard/16">
+
+                                                                            <div>                                                      
+
+                                                                                <span class="text-black text-uppercase cardButtonTitle" style="font-weight: bold; width: 100%;">
+                                                                                NON-DRIVER ID
+                                                                                </span>
+                                                                                <br />
+                                                                                <span class="text-black cardButtonCount" style="display:block;padding-top:10px">
+                                                                                    12889 Appointments Available
+                                                                                </span>
+                                                                            </div>
+                                                                        </a>
+
+
+                                                                        <div class='overlay-card text-center cardDescription'>
+                                                                            <ul><li>Apply for a non-driver ID (ages 14+)</li>
+<li>Downgrade your Class D license to ID only</li></ul>
+                                                                                <ul>
+                                                                                    <li>
+                                                                                        <a style="text-decoration:underline;" target="_blank"
+                                                                                           rel="noopener noreferrer"
+                                                                                           href="https://www.state.nj.us/mvc/license/nondriverid.htm">
+                                                                                            Required Documents
+                                                                                        </a>
+                                                                                    </li>
+                                                                                </ul>
+                                                                        </div>
+                                                                </fieldset>
+
+                                                            </div>
+                                                            <div class="cards cardContainer" style="display:none" data-type='  Driver&#x2019;s License/Non-Driver ID Services'>
+                                                                <fieldset>
+
+                                                                        <a class="overlay-card text-center text-underline cardButton" style="cursor:pointer;float:left;width:100%" tabindex="-1"
+                                                                         href="/njmvc/AppointmentWizard/12">
+
+                                                                            <div>                                                      
+
+                                                                                <span class="text-black text-uppercase cardButtonTitle" style="font-weight: bold; width: 100%;">
+                                                                                REAL ID
+                                                                                </span>
+                                                                                <br />
+                                                                                <span class="text-black cardButtonCount" style="display:block;padding-top:10px">
+                                                                                    0 Appointments Available
+                                                                                </span>
+                                                                            </div>
+                                                                        </a>
+
+
+                                                                        <div class='overlay-card text-center cardDescription'>
+                                                                            <ul><li>ONLY for individuals not eligible for renewal within the next 3 months – IF eligible for renewal please use a Renewal Appointment</li><li>Upgrade your standard license/ID to a <strong>REAL ID✪</strong></li>
+<li>Upgrade your CDL to a <strong>REAL ID✪</strong></li></ul>
+                                                                                <ul>
+                                                                                    <li>
+                                                                                        <a style="text-decoration:underline;" target="_blank"
+                                                                                           rel="noopener noreferrer"
+                                                                                           href="https://www.nj.gov/mvc/realid/">
+                                                                                            Required Documents
+                                                                                        </a>
+                                                                                    </li>
+                                                                                </ul>
+                                                                        </div>
+                                                                </fieldset>
+
+                                                            </div>
+                                                            <div class="cards cardContainer" style="display:none" data-type='  Driver&#x2019;s License/Non-Driver ID Services'>
+                                                                <fieldset>
+
+                                                                        <a class="overlay-card text-center text-underline cardButton" style="cursor:pointer;float:left;width:100%" tabindex="-1"
+                                                                         href="/njmvc/AppointmentWizard/11">
+
+                                                                            <div>                                                      
+
+                                                                                <span class="text-black text-uppercase cardButtonTitle" style="font-weight: bold; width: 100%;">
+                                                                                RENEWAL: LICENSE OR NON-DRIVER ID
+                                                                                </span>
+                                                                                <br />
+                                                                                <span class="text-black cardButtonCount" style="display:block;padding-top:10px">
+                                                                                    60217 Appointments Available
+                                                                                </span>
+                                                                            </div>
+                                                                        </a>
+
+
+                                                                        <div class='overlay-card text-center cardDescription'>
+                                                                            <ul>
+<li>
+Renew your license/ID
+</li>
+<li>
+Renew your standard license/ID and upgrade to a <strong>REAL ID✪</strong>.</li>
+
+</ul>
+                                                                                <ul>
+                                                                                    <li>
+                                                                                        <a style="text-decoration:underline;" target="_blank"
+                                                                                           rel="noopener noreferrer"
+                                                                                           href="https://www.state.nj.us/mvc/license/licrenew.htm">
+                                                                                            Required Documents
+                                                                                        </a>
+                                                                                    </li>
+                                                                                </ul>
+                                                                        </div>
+                                                                </fieldset>
+
+                                                            </div>
+                                                            <div class="cards cardContainer" style="display:none" data-type='  Driver&#x2019;s License/Non-Driver ID Services'>
+                                                                <fieldset>
+
+                                                                        <a class="overlay-card text-center text-underline cardButton" style="cursor:pointer;float:left;width:100%" tabindex="-1"
+                                                                         href="/njmvc/AppointmentWizard/7">
+
+                                                                            <div>                                                      
+
+                                                                                <span class="text-black text-uppercase cardButtonTitle" style="font-weight: bold; width: 100%;">
+                                                                                TRANSFER FROM OUT OF STATE
+                                                                                </span>
+                                                                                <br />
+                                                                                <span class="text-black cardButtonCount" style="display:block;padding-top:10px">
+                                                                                    33641 Appointments Available
+                                                                                </span>
+                                                                            </div>
+                                                                        </a>
+
+
+                                                                        <div class='overlay-card text-center cardDescription'>
+                                                                            <ul><li><strong>Transfer your driver’s license from another state or jurisdiction. (If completing a driver’s license transaction, you may also transfer your out of state title and/or registration.)</strong></li></ul>
+                                                                                <ul>
+                                                                                    <li>
+                                                                                        <a style="text-decoration:underline;" target="_blank"
+                                                                                           rel="noopener noreferrer"
+                                                                                           href="https://www.state.nj.us/mvc/drivertopics/movetonj.htm">
+                                                                                            Required Documents
+                                                                                        </a>
+                                                                                    </li>
+                                                                                </ul>
+                                                                        </div>
+                                                                </fieldset>
+
+                                                            </div>
+                                                        <button type='button' class='groupBtn btn mb-2 accordion-heading collapse-closed' data-type=' CDL Services'>
+                                                            <span>
+                                                                 CDL Services
+                                                            </span>
+                                                        </button>
+                                                            <div class="cards cardContainer" style="display:none" data-type=' CDL Services'>
+                                                                <fieldset>
+
+                                                                        <a class="overlay-card text-center text-underline cardButton" style="cursor:pointer;float:left;width:100%" tabindex="-1"
+                                                                         href="/njmvc/AppointmentWizard/12">
+
+                                                                            <div>                                                      
+
+                                                                                <span class="text-black text-uppercase cardButtonTitle" style="font-weight: bold; width: 100%;">
+                                                                                REAL ID
+                                                                                </span>
+                                                                                <br />
+                                                                                <span class="text-black cardButtonCount" style="display:block;padding-top:10px">
+                                                                                    0 Appointments Available
+                                                                                </span>
+                                                                            </div>
+                                                                        </a>
+
+
+                                                                        <div class='overlay-card text-center cardDescription'>
+                                                                            <ul><li>ONLY for individuals not eligible for renewal within the next 3 months – IF eligible for renewal please use a Renewal Appointment</li><li>Upgrade your standard license/ID to a <strong>REAL ID✪</strong></li>
+<li>Upgrade your CDL to a <strong>REAL ID✪</strong></li></ul>
+                                                                                <ul>
+                                                                                    <li>
+                                                                                        <a style="text-decoration:underline;" target="_blank"
+                                                                                           rel="noopener noreferrer"
+                                                                                           href="https://www.nj.gov/mvc/realid/">
+                                                                                            Required Documents
+                                                                                        </a>
+                                                                                    </li>
+                                                                                </ul>
+                                                                        </div>
+                                                                </fieldset>
+
+                                                            </div>
+                                                            <div class="cards cardContainer" style="display:none" data-type=' CDL Services'>
+                                                                <fieldset>
+
+                                                                        <a class="overlay-card text-center text-underline cardButton" style="cursor:pointer;float:left;width:100%" tabindex="-1"
+                                                                         href="/njmvc/AppointmentWizard/14">
+
+                                                                            <div>                                                      
+
+                                                                                <span class="text-black text-uppercase cardButtonTitle" style="font-weight: bold; width: 100%;">
+                                                                                CDL PERMIT OR ENDORSEMENT - (NOT FOR KNOWLEDGE TEST)
+                                                                                </span>
+                                                                                <br />
+                                                                                <span class="text-black cardButtonCount" style="display:block;padding-top:10px">
+                                                                                    9690 Appointments Available
+                                                                                </span>
+                                                                            </div>
+                                                                        </a>
+
+
+                                                                        <div class='overlay-card text-center cardDescription'>
+                                                                            <ul><li>Add an endorsement</li>
+<li>Purchase a Commercial Learner’s Permit (CLP)</li><li>Upgrade/Downgrade your CDL</li>
+<li>Purchase an examination test receipt</li>
+</ul>
+                                                                                <ul>
+                                                                                    <li>
+                                                                                        <a style="text-decoration:underline;" target="_blank"
+                                                                                           rel="noopener noreferrer"
+                                                                                           href="https://www.nj.gov/mvc/drivertopics/gettingcdl.htm">
+                                                                                            Required Documents
+                                                                                        </a>
+                                                                                    </li>
+                                                                                </ul>
+                                                                        </div>
+                                                                </fieldset>
+
+                                                            </div>
+                                                            <div class="cards cardContainer" style="display:none" data-type=' CDL Services'>
+                                                                <fieldset>
+
+                                                                        <a class="overlay-card text-center text-underline cardButton" style="cursor:pointer;float:left;width:100%" tabindex="-1"
+                                                                         href="/njmvc/AppointmentWizard/6">
+
+                                                                            <div>                                                      
+
+                                                                                <span class="text-black text-uppercase cardButtonTitle" style="font-weight: bold; width: 100%;">
+                                                                                RENEWAL: CDL (REAL ID UPGRADE AVAILABLE)
+                                                                                </span>
+                                                                                <br />
+                                                                                <span class="text-black cardButtonCount" style="display:block;padding-top:10px">
+                                                                                    10970 Appointments Available
+                                                                                </span>
+                                                                            </div>
+                                                                        </a>
+
+
+                                                                        <div class='overlay-card text-center cardDescription'>
+                                                                            <ul><li>Renew your CDL</li>
+<li>Renew your CDL as a <strong>REAL ID✪</strong></li></ul>
+                                                                                <ul>
+                                                                                    <li>
+                                                                                        <a style="text-decoration:underline;" target="_blank"
+                                                                                           rel="noopener noreferrer"
+                                                                                           href="https://www.state.nj.us/mvc/drivertopics/gettingcdl.htm">
+                                                                                            Required Documents
+                                                                                        </a>
+                                                                                    </li>
+                                                                                </ul>
+                                                                        </div>
+                                                                </fieldset>
+
+                                                            </div>
+                                                            <div class="cards cardContainer" style="display:none" data-type=' CDL Services'>
+                                                                <fieldset>
+
+                                                                        <a class="overlay-card text-center text-underline cardButton" style="cursor:pointer;float:left;width:100%" tabindex="-1"
+                                                                         href="/njmvc/AppointmentWizard/20">
+
+                                                                            <div>                                                      
+
+                                                                                <span class="text-black text-uppercase cardButtonTitle" style="font-weight: bold; width: 100%;">
+                                                                                CDL KNOWLEDGE TEST
+                                                                                </span>
+                                                                                <br />
+                                                                                <span class="text-black cardButtonCount" style="display:block;padding-top:10px">
+                                                                                    23686 Appointments Available
+                                                                                </span>
+                                                                            </div>
+                                                                        </a>
+
+
+                                                                        <div class='overlay-card text-center cardDescription'>
+                                                                            <ul>
+<li><strong>You must have an initial permit/exam test receipt before scheduling your test</strong></li>
+<li>Take a CDL knowledge exam</li>
+<li>Take a CDL endorsement exam
+</li>
+</ul>
+                                                                                <ul>
+                                                                                    <li>
+                                                                                        <a style="text-decoration:underline;" target="_blank"
+                                                                                           rel="noopener noreferrer"
+                                                                                           href="https://www.state.nj.us/mvc/license/knowledgetest.htm">
+                                                                                            Required Documents
+                                                                                        </a>
+                                                                                    </li>
+                                                                                </ul>
+                                                                        </div>
+                                                                </fieldset>
+
+                                                            </div>
+                                                            <div class="cards cardContainer" style="display:none" data-type=' CDL Services'>
+                                                                <fieldset>
+
+                                                                        <a class="overlay-card text-center text-underline cardButton" style="cursor:pointer;float:left;width:100%" tabindex="-1"
+                                                                         href="/njmvc/AppointmentWizard/251">
+
+                                                                            <div>                                                      
+
+                                                                                <span class="text-black text-uppercase cardButtonTitle" style="font-weight: bold; width: 100%;">
+                                                                                CDL Road Test
+                                                                                </span>
+                                                                                <br />
+                                                                                <span class="text-black cardButtonCount" style="display:block;padding-top:10px">
+                                                                                    9823 Appointments Available
+                                                                                </span>
+                                                                            </div>
+                                                                        </a>
+
+
+                                                                        <div class='overlay-card text-center cardDescription'>
+                                                                            <ul><li>Pass the CDL knowledge exam</li>
+<li>Pass a CDL endorsement exam</li>
+<li>Must have a valid Commercial Learner’s Permit (CLP)</li>
+<li><strong>Practice supervised driving for at least 14 days</strong></li>
+<li>Entry Level Driver Training (ELDT) federal requirements must be successfully completed prior to road test</li></ul>
+                                                                                <ul>
+                                                                                    <li>
+                                                                                        <a style="text-decoration:underline;" target="_blank"
+                                                                                           rel="noopener noreferrer"
+                                                                                           href="https://www.nj.gov/mvc/license/roadtest.htm">
+                                                                                            What to Bring
+                                                                                        </a>
+                                                                                    </li>
+                                                                                </ul>
+                                                                        </div>
+                                                                </fieldset>
+
+                                                            </div>
+                                                            <div class="cards cardContainer" style="display:none" data-type=' CDL Services'>
+                                                                <fieldset>
+
+                                                                        <a class="overlay-card text-center text-underline cardButton" style="cursor:pointer;float:left;width:100%" tabindex="-1"
+                                                                         href="/njmvc/AppointmentWizard/7">
+
+                                                                            <div>                                                      
+
+                                                                                <span class="text-black text-uppercase cardButtonTitle" style="font-weight: bold; width: 100%;">
+                                                                                TRANSFER FROM OUT OF STATE
+                                                                                </span>
+                                                                                <br />
+                                                                                <span class="text-black cardButtonCount" style="display:block;padding-top:10px">
+                                                                                    33641 Appointments Available
+                                                                                </span>
+                                                                            </div>
+                                                                        </a>
+
+
+                                                                        <div class='overlay-card text-center cardDescription'>
+                                                                            <ul><li><strong>Transfer your driver’s license from another state or jurisdiction. (If completing a driver’s license transaction, you may also transfer your out of state title and/or registration.)</strong></li></ul>
+                                                                                <ul>
+                                                                                    <li>
+                                                                                        <a style="text-decoration:underline;" target="_blank"
+                                                                                           rel="noopener noreferrer"
+                                                                                           href="https://www.state.nj.us/mvc/drivertopics/movetonj.htm">
+                                                                                            Required Documents
+                                                                                        </a>
+                                                                                    </li>
+                                                                                </ul>
+                                                                        </div>
+                                                                </fieldset>
+
+                                                            </div>
+                                                        <button type='button' class='groupBtn btn mb-2 accordion-heading collapse-closed' data-type=' Road/Knowledge Testing Services'>
+                                                            <span>
+                                                                 Road/Knowledge Testing Services
+                                                            </span>
+                                                        </button>
+                                                            <div class="cards cardContainer" style="display:none" data-type=' Road/Knowledge Testing Services'>
+                                                                <fieldset>
+
+                                                                        <a class="overlay-card text-center text-underline cardButton" style="cursor:pointer;float:left;width:100%" tabindex="-1"
+                                                                         href="/njmvc/AppointmentWizard/19">
+
+                                                                            <div>                                                      
+
+                                                                                <span class="text-black text-uppercase cardButtonTitle" style="font-weight: bold; width: 100%;">
+                                                                                KNOWLEDGE TEST (NOT CDL)
+                                                                                </span>
+                                                                                <br />
+                                                                                <span class="text-black cardButtonCount" style="display:block;padding-top:10px">
+                                                                                    117474 Appointments Available
+                                                                                </span>
+                                                                            </div>
+                                                                        </a>
+
+
+                                                                        <div class='overlay-card text-center cardDescription'>
+                                                                            <ul>
+
+<li><strong>You must have an initial permit</strong></li>
+<li>Take the basic knowledge (written) exam</li><li>Take a motorcycle endorsement exam</li> 
+<li>Take a Driving Instructor exam
+</li></ul>
+                                                                                <ul>
+                                                                                    <li>
+                                                                                        <a style="text-decoration:underline;" target="_blank"
+                                                                                           rel="noopener noreferrer"
+                                                                                           href="https://www.state.nj.us/mvc/license/knowledgetest.htm">
+                                                                                            Required Documents
+                                                                                        </a>
+                                                                                    </li>
+                                                                                </ul>
+                                                                        </div>
+                                                                </fieldset>
+
+                                                            </div>
+                                                            <div class="cards cardContainer" style="display:none" data-type=' Road/Knowledge Testing Services'>
+                                                                <fieldset>
+
+                                                                        <a class="overlay-card text-center text-underline cardButton" style="cursor:pointer;float:left;width:100%" tabindex="-1"
+                                                                         href="/njmvc/AppointmentWizard/252">
+
+                                                                            <div>                                                      
+
+                                                                                <span class="text-black text-uppercase cardButtonTitle" style="font-weight: bold; width: 100%;">
+                                                                                Auto Road Test
+                                                                                </span>
+                                                                                <br />
+                                                                                <span class="text-black cardButtonCount" style="display:block;padding-top:10px">
+                                                                                    516553 Appointments Available
+                                                                                </span>
+                                                                            </div>
+                                                                        </a>
+
+
+                                                                        <div class='overlay-card text-center cardDescription'>
+                                                                            <ul><li>Pass the knowledge exam and vision test</li>
+<li>Must have a validated permit</li>
+<li><strong>Practice supervised driving for at least 6 months (Graduated Driver License  (GDL) requirement for under 21 years of age)</strong></li>
+<li><strong>Practice supervised driving for at least 3 months (Graduated Driver License  (GDL) requirement for over 21 years of age)</strong></li>
+<li><strong>Non-GDL practice supervised driving for at least 20 days</strong></li></ul>
+                                                                                <ul>
+                                                                                    <li>
+                                                                                        <a style="text-decoration:underline;" target="_blank"
+                                                                                           rel="noopener noreferrer"
+                                                                                           href="https://www.nj.gov/mvc/license/roadtest.htm">
+                                                                                            What to Bring
+                                                                                        </a>
+                                                                                    </li>
+                                                                                </ul>
+                                                                        </div>
+                                                                </fieldset>
+
+                                                            </div>
+                                                            <div class="cards cardContainer" style="display:none" data-type=' Road/Knowledge Testing Services'>
+                                                                <fieldset>
+
+                                                                        <a class="overlay-card text-center text-underline cardButton" style="cursor:pointer;float:left;width:100%" tabindex="-1"
+                                                                         href="/njmvc/AppointmentWizard/253">
+
+                                                                            <div>                                                      
+
+                                                                                <span class="text-black text-uppercase cardButtonTitle" style="font-weight: bold; width: 100%;">
+                                                                                Agricultural Road Test
+                                                                                </span>
+                                                                                <br />
+                                                                                <span class="text-black cardButtonCount" style="display:block;padding-top:10px">
+                                                                                    20005 Appointments Available
+                                                                                </span>
+                                                                            </div>
+                                                                        </a>
+
+
+                                                                        <div class='overlay-card text-center cardDescription'>
+                                                                            <ul><li>Pass the knowledge exam and vision test</li>
+<li>Must have a validated permit</li>
+<li>Practice supervised driving for at least 20 days</li></ul>
+                                                                                <ul>
+                                                                                    <li>
+                                                                                        <a style="text-decoration:underline;" target="_blank"
+                                                                                           rel="noopener noreferrer"
+                                                                                           href="https://www.nj.gov/mvc/license/roadtest.htm">
+                                                                                            What to Bring
+                                                                                        </a>
+                                                                                    </li>
+                                                                                </ul>
+                                                                        </div>
+                                                                </fieldset>
+
+                                                            </div>
+                                                            <div class="cards cardContainer" style="display:none" data-type=' Road/Knowledge Testing Services'>
+                                                                <fieldset>
+
+                                                                        <a class="overlay-card text-center text-underline cardButton" style="cursor:pointer;float:left;width:100%" tabindex="-1"
+                                                                         href="/njmvc/AppointmentWizard/254">
+
+                                                                            <div>                                                      
+
+                                                                                <span class="text-black text-uppercase cardButtonTitle" style="font-weight: bold; width: 100%;">
+                                                                                Moped Road Test
+                                                                                </span>
+                                                                                <br />
+                                                                                <span class="text-black cardButtonCount" style="display:block;padding-top:10px">
+                                                                                    20005 Appointments Available
+                                                                                </span>
+                                                                            </div>
+                                                                        </a>
+
+
+                                                                        <div class='overlay-card text-center cardDescription'>
+                                                                            <ul><li>Pass the knowledge exam and vision test</li>
+<li>Must have a validated permit</li>
+<li>Practice riding for at least 20 days</li>
+</ul>
+                                                                                <ul>
+                                                                                    <li>
+                                                                                        <a style="text-decoration:underline;" target="_blank"
+                                                                                           rel="noopener noreferrer"
+                                                                                           href="https://www.nj.gov/mvc/license/roadtest.htm">
+                                                                                            What to Bring
+                                                                                        </a>
+                                                                                    </li>
+                                                                                </ul>
+                                                                        </div>
+                                                                </fieldset>
+
+                                                            </div>
+                                                            <div class="cards cardContainer" style="display:none" data-type=' Road/Knowledge Testing Services'>
+                                                                <fieldset>
+
+                                                                        <a class="overlay-card text-center text-underline cardButton" style="cursor:pointer;float:left;width:100%" tabindex="-1"
+                                                                         href="/njmvc/AppointmentWizard/255">
+
+                                                                            <div>                                                      
+
+                                                                                <span class="text-black text-uppercase cardButtonTitle" style="font-weight: bold; width: 100%;">
+                                                                                Motorcycle Road Test
+                                                                                </span>
+                                                                                <br />
+                                                                                <span class="text-black cardButtonCount" style="display:block;padding-top:10px">
+                                                                                    20005 Appointments Available
+                                                                                </span>
+                                                                            </div>
+                                                                        </a>
+
+
+                                                                        <div class='overlay-card text-center cardDescription'>
+                                                                            <ul><li>Pass the knowledge exam and vision test</li>
+<li>Must have a validated permit</li>
+<li>Practice riding for at least 20 days</li>
+<li>The road test is NOT required if you completed the Basic Rider Course (BRC)</li></ul>
+                                                                                <ul>
+                                                                                    <li>
+                                                                                        <a style="text-decoration:underline;" target="_blank"
+                                                                                           rel="noopener noreferrer"
+                                                                                           href="https://www.nj.gov/mvc/license/roadtest.htm">
+                                                                                            What to Bring
+                                                                                        </a>
+                                                                                    </li>
+                                                                                </ul>
+                                                                        </div>
+                                                                </fieldset>
+
+                                                            </div>
+                                                        <button type='button' class='groupBtn btn mb-2 accordion-heading collapse-closed' data-type=' Title/Registration Services'>
+                                                            <span>
+                                                                 Title/Registration Services
+                                                            </span>
+                                                        </button>
+                                                            <div class="cards cardContainer" style="display:none" data-type=' Title/Registration Services'>
+                                                                <fieldset>
+
+                                                                        <a class="overlay-card text-center text-underline cardButton" style="cursor:pointer;float:left;width:100%" tabindex="-1"
+                                                                         href="/njmvc/AppointmentWizard/8">
+
+                                                                            <div>                                                      
+
+                                                                                <span class="text-black text-uppercase cardButtonTitle" style="font-weight: bold; width: 100%;">
+                                                                                NEW TITLE OR REGISTRATION
+                                                                                </span>
+                                                                                <br />
+                                                                                <span class="text-black cardButtonCount" style="display:block;padding-top:10px">
+                                                                                    99325 Appointments Available
+                                                                                </span>
+                                                                            </div>
+                                                                        </a>
+
+
+                                                                        <div class='overlay-card text-center cardDescription'>
+                                                                            <ul><li>Register or transfer registration/title of a new vehicle, boat, or trailer (private sale)</li>
+<li>Title or Registration transfer (survivor)</li>
+<li>License plate transfer</li>
+<li>License plate replacement</li></ul>
+
+                                                                                <ul>
+                                                                                    <li>
+                                                                                        <a style="text-decoration:underline;" target="_blank"
+                                                                                           rel="noopener noreferrer"
+                                                                                           href="https://www.state.nj.us/mvc/vehicles/reginitial.htm">
+                                                                                            Required Documents
+                                                                                        </a>
+                                                                                    </li>
+                                                                                </ul>
+                                                                        </div>
+                                                                </fieldset>
+
+                                                            </div>
+                                                            <div class="cards cardContainer" style="display:none" data-type=' Title/Registration Services'>
+                                                                <fieldset>
+
+                                                                        <a class="overlay-card text-center text-underline cardButton" style="cursor:pointer;float:left;width:100%" tabindex="-1"
+                                                                         href="/njmvc/AppointmentWizard/13">
+
+                                                                            <div>                                                      
+
+                                                                                <span class="text-black text-uppercase cardButtonTitle" style="font-weight: bold; width: 100%;">
+                                                                                REPLACEMENT TITLE/ REGISTRATION
+                                                                                </span>
+                                                                                <br />
+                                                                                <span class="text-black cardButtonCount" style="display:block;padding-top:10px">
+                                                                                    12123 Appointments Available
+                                                                                </span>
+                                                                            </div>
+                                                                        </a>
+
+
+                                                                        <div class='overlay-card text-center cardDescription'>
+                                                                            <ul><li>Apply for a replacement title
+</li><li>Apply for a duplicate title</li>
+<li>Apply for a replacement or duplicate registration (<a target='_blank'  href='https://www.state.nj.us/mvc/vehicles/regreplace.htm'>Required Documents</a>)</li></ul>
+                                                                                <ul>
+                                                                                    <li>
+                                                                                        <a style="text-decoration:underline;" target="_blank"
+                                                                                           rel="noopener noreferrer"
+                                                                                           href="https://www.state.nj.us/mvc/vehicles/duptitle.htm">
+                                                                                            Required Documents
+                                                                                        </a>
+                                                                                    </li>
+                                                                                </ul>
+                                                                        </div>
+                                                                </fieldset>
+
+                                                            </div>
+                                                            <div class="cards cardContainer" style="display:none" data-type=' Title/Registration Services'>
+                                                                <fieldset>
+
+                                                                        <a class="overlay-card text-center text-underline cardButton" style="cursor:pointer;float:left;width:100%" tabindex="-1"
+                                                                         href="/njmvc/AppointmentWizard/10">
+
+                                                                            <div>                                                      
+
+                                                                                <span class="text-black text-uppercase cardButtonTitle" style="font-weight: bold; width: 100%;">
+                                                                                REGISTRATION RENEWAL
+                                                                                </span>
+                                                                                <br />
+                                                                                <span class="text-black cardButtonCount" style="display:block;padding-top:10px">
+                                                                                    35102 Appointments Available
+                                                                                </span>
+                                                                            </div>
+                                                                        </a>
+
+
+                                                                        <div class='overlay-card text-center cardDescription'>
+                                                                            <ul><li>Not eligible for <a target='_blank'  href='https://www.state.nj.us/mvc/vehicles/regrenew.htm'>online renewal</a> </li><li>Previously suspended, suspension has been satisfied</li>
+<li>Registration is expired for 6+ months</li>
+<li>Title stop is on your record</li></ul>
+                                                                                <ul>
+                                                                                    <li>
+                                                                                        <a style="text-decoration:underline;" target="_blank"
+                                                                                           rel="noopener noreferrer"
+                                                                                           href="https://www.state.nj.us/mvc/vehicles/regrenew.htm">
+                                                                                            Required Documents
+                                                                                        </a>
+                                                                                    </li>
+                                                                                </ul>
+                                                                        </div>
+                                                                </fieldset>
+
+                                                            </div>
+                                                        <button type='button' class='groupBtn btn mb-2 accordion-heading collapse-closed' data-type='Mobile Unit Events'>
+                                                            <span>
+                                                                Mobile Unit Events
+                                                            </span>
+                                                        </button>
+                                                            <div class="cards cardContainer" style="display:none" data-type='Mobile Unit Events'>
+                                                                <fieldset>
+
+                                                                        <a class="overlay-card text-center text-underline cardButton" style="cursor:pointer;float:left;width:100%" tabindex="-1"
+                                                                         href="/njmvc/AppointmentWizard/270">
+
+                                                                            <div>                                                      
+
+                                                                                <span class="text-black text-uppercase cardButtonTitle" style="font-weight: bold; width: 100%;">
+                                                                                PLEASE VISIT THE LINK IN THE DESCRIPTION BELOW FOR THE NEW MOBILE UNIT SCHEDULING SITE
+                                                                                </span>
+                                                                                <br />
+                                                                                <span class="text-black cardButtonCount" style="display:block;padding-top:10px">
+                                                                                    0 Appointments Available
+                                                                                </span>
+                                                                            </div>
+                                                                        </a>
+
+
+                                                                        <div class='overlay-card text-center cardDescription'>
+                                                                            <ul><li>Please visit NJMVC.GOV to find important information regarding the new Mobile Unit Scheduling site.</li></ul>
+                                                                                <ul>
+                                                                                    <li>
+                                                                                        <a style="text-decoration:underline;" target="_blank"
+                                                                                           rel="noopener noreferrer"
+                                                                                           href="https://telegov.njportal.com/njmvcmobileunit">
+                                                                                            New Mobile Unit Scheduling Site HERE
+                                                                                        </a>
+                                                                                    </li>
+                                                                                </ul>
+                                                                        </div>
+                                                                </fieldset>
+
+                                                            </div>
+                                                </div>
+                    </div>
+                </div>
+            </div>
+        <input name="__RequestVerificationToken" type="hidden" value="CfDJ8PXsBq2x2iBGu7BX7Eq72b1GvzIBfrlvBqTjR7Hb-BBJG_Ke7JBDT-zf49qSggyoIs5XzAP4do6fl_TXs__O2BE-QF0k9FvT4GQGPZr4yVgZlkUAZqblAhQZP9Hts5CsgKtzfnuXXbSUA6VIvIM18_A" /></form>
+
+
+
+
+
+        <div class="col">
+            <div class="float-left">
+                <a class="btn btn-default" ;' href="/njmvc">
+                    <span class="" aria-hidden="true" role="presentation"></span> Previous
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+
+
+    </main>
+
+    
+<footer class="footer text-center mt-5 justify-content-between">
+
+    <div class="container-footer">
+
+        <div class="row-footer">
+
+            <div id="mdg-FOOTER__contacts" class="column-footer-v3">
+                <a href="/" target="_blank" style="text-decoration: underline;">TeleGov</a>, an NIC Platform
+            </div>
+
+            <div class="img-footer-v3">
+                <img src="https://www.njportal.com/styles/img/digital-nj.png" alt="NJ Logo" title="NJ Logo">
+            </div>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    
+    <script src="/lib/modernizr/modernizr.3.9.1.js"></script>
+    <script src="/lib/jquery/dist/jquery.min.js"></script>
+    <script src="/lib/jquery-ui/jquery-ui.min.js"></script>
+    <script src="/lib/jquery-mask/jquery.mask.js"></script>
+    <script src="/lib/jquery-autotab/js/jquery.autotab.min.js"></script>
+    <script src="/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="/lib/daterangepicker/moment.min.js"></script>
+    <script src="/lib/daterangepicker/daterangepicker.js"></script>
+    <script src="/lib/jquery-timepicker/jquery-timepicker.js"></script>
+    <script src="/lib/jquery-datepair/datepair.js"></script>
+    <script src="/lib/jquery-datepair/jquery.datepair.js"></script>
+    <script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/lib/bootstrap-multiselect/bootstrap-multiselect.js"></script>
+    <script src="/lib/bootstrap-session-timeout.js"></script>
+<script src="/lib/fontawesome5.13.0/js/all.js"></script>
+
+
+
+    <script src="/js/lib.js"></script>
+<script src="/js/site.js"></script>
+<script src="/js/customvalidation.js"></script>
+
+    
+    <script type="text/javascript">var relativeUrl = '';</script>
+    
+
+    <script type="text/javascript">
+    function selectRequiredDocuments(id) {
+        var requestData = {
+            appointmentTypeId: id
+        };
+        $.ajax({
+            type: "POST",
+            url: "/njmvc/CustomerCreateAppointments/GetRequiredDocuments",
+            data: JSON.stringify(requestData),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                var url = data;
+                window.open(url, '_blank');
+            },
+            error: function (x, t, e) {
+                modalAlert("Error searching types: " + e);
+
+            }
+        });
+    }
+    function Navigate(id) {
+        var uri = "/njmvc/AppointmentWizard" + "/" + id;
+        window.location.href = uri;
+        window.location.href = uri;
+    }
+        function groupButtonClick(e) {
+            var src = $(this);
+            var open = $(".collapse-open");
+            $('#step-1').find('.cardContainer').hide();
+            if (src[0] != open[0]) { 
+                src.removeClass('collapse-closed');
+                src.addClass('collapse-open');
+                open.removeClass('collapse-open');
+                open.addClass('collapse-closed');
+                var group = src.attr('data-type')
+                $('#step-1').find('[data-type="' + group + '"]').show();
+                this.scrollIntoView();
+            }
+            else {
+                src.removeClass('collapse-open');
+                src.addClass('collapse-closed');
+            }
+        }
+    function cardDetailClick(e) { 
+            var srcContainer=$($(this).parent()[0]);
+            var icon = $($(this).find('svg')[0]);
+            if (srcContainer.hasClass('cardContainer')) // switch to description mode
+            { 
+                srcContainer.removeClass('cardContainer');
+                srcContainer.addClass('cardContainerWithDescription');
+                var card= srcContainer.find('.cardButton');
+                card.removeClass('cardButton');
+                card.addClass('cardButtonWithDescription')
+                var description =srcContainer.find('.cardDescription');
+                icon.removeClass(/*'fa-chevron-down'*/);
+                icon.removeClass('svg-inline--fa');
+                icon.removeClass('fa-inverse');
+                icon.addClass(/*'fa-chevron-up'*/);
+                icon.addClass('svg-inline--falight');
+                description.show();
+            }
+            else //switch to solo mode
+            { 
+                srcContainer.removeClass('cardContainerWithDescription');
+                srcContainer.addClass('cardContainer');
+                
+                var card= srcContainer.find('.cardButtonWithDescription');
+                card.removeClass('cardButtonWithDescription');
+                card.addClass('cardButton')
+                var description =srcContainer.find('.cardDescription');
+                description.hide();
+                icon.removeClass(/*'fa-chevron-up'*/);
+                icon.removeClass('svg-inline--falight');
+                icon.addClass('svg-inline--fa');
+                icon.addClass('fa-inverse');
+                icon.addClass(/*'fa-chevron-down'*/);
+            }
+      //      reFixRows();
+        }
+    $(function() {
+ //       reFixRows(); 
+   //    window.setTimeout(reFixRows,200);
+   //    window.setTimeout(reFixRows,500);
+   //    window.setTimeout(reFixRows,1000);
+        }
+        );
+    $('.groupBtn').on('click',groupButtonClick);
+    $('.cardDetailButton').on('click',cardDetailClick);
+  //  $( window ).resize(reFixRows);
+    
+    </script>
+
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+         new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+        function showHideTranslate() { 
+            $('#googleOptionContainer').toggle();
+        }
+        function fillLanguageOptions() { 
+            var rawSelect= $('#defaultGoogleTranslateContainer').find('select')[0];
+            if (rawSelect != null) {
+                var select =$(rawSelect);
+                if (select.html().length > 100) {
+                    var gParent=select.parent()[0];
+                    gParent.removeChild(rawSelect);
+                    $('#googleOptionContainer')[0].appendChild(rawSelect);
+                    $('#googleOptionContainer').find('select').on('change',languageSelected);
+                    return;
+                }
+            }
+            
+            setTimeout(fillLanguageOptions,1000);
+        }
+        function languageSelected() { 
+            $('#googleOptionContainer').toggle();
+        }
+        fillLanguageOptions();
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    
+
+
+    <!-- Google Analytics -->
+    <script>
+        window.ga = window.ga || function () { (ga.q = ga.q || []).push(arguments) }; ga.l = +new Date;
+        ga('create', 'UA-22261218-32', 'auto');
+        ga('send', 'pageview');
+
+ga('create', 'UA-22261218-33', 'auto', 'njmvcTracker');
+ga('njmvcTracker.send', 'pageview');    </script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+    <!-- End Google Analytics -->
+</body>
+</html>
