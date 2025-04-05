@@ -14,10 +14,10 @@ The easiest way to run the tracker on Windows is using Docker, which was already
 
 1. Configure your `.env` file with your email credentials:
    ```
-   # Email configuration is already updated with your information
-   TRACKER_EMAIL_SENDER=adamb.capuana@gmail.com
-   TRACKER_EMAIL_RECIPIENT=7329957580@vtext.com
-   TRACKER_EMAIL_PASSWORD=zczq xbiu hbrg wved
+   # Update this configuration with your information
+   TRACKER_EMAIL_SENDER=your-email@gmail.com
+   TRACKER_EMAIL_RECIPIENT=your-phone-number@vtext.com
+   TRACKER_EMAIL_PASSWORD=your-app-password
    ```
 
 2. Start the tracker using:
@@ -71,9 +71,9 @@ If you prefer to run the tracker directly on Windows without Docker, you can use
 All configuration settings are in the `.env` file:
 
 - `TRACKER_CHECK_INTERVAL`: How often to check for appointments (in minutes)
-- `TRACKER_EMAIL_SENDER`: Gmail address to send notifications from (already set to adamb.capuana@gmail.com)
-- `TRACKER_EMAIL_RECIPIENT`: Email address to receive notifications (already set to 7329957580@vtext.com)
-- `TRACKER_EMAIL_PASSWORD`: Google App Password for the Gmail account (already set)
+- `TRACKER_EMAIL_SENDER`: Gmail address to send notifications from
+- `TRACKER_EMAIL_RECIPIENT`: Email address to receive notifications
+- `TRACKER_EMAIL_PASSWORD`: Google App Password for the Gmail account
 
 ## Troubleshooting
 
