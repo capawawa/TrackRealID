@@ -13,7 +13,7 @@ This guide consolidates all the different ways to run the REAL ID Appointment Tr
 | **Stop Native** | `powershell -ExecutionPolicy Bypass -File .\stop-tracker.ps1` | `./stop-tracker.sh` |
 | **Check Status** | `.\check-tracker.bat` | `./check-tracker.sh` |
 | **Direct Node.js** | `node src/index.js` | `node src/index.js` |
-| **Run Test** | `node src/test.js` | `node src/test.js` |
+| **Run Test** | `node src/index.js test` | `node src/index.js test` |
 | **Unified Management** | N/A | `./tracker.sh [command]` |
 
 ## Windows Options
@@ -148,8 +148,17 @@ chmod +x tracker.sh
 # Stop the tracker
 ./tracker.sh stop
 
+# Force stop the tracker
+./tracker.sh stop -f
+
 # Use Docker instead
 ./tracker.sh start -d
+
+# Run in verbose mode
+./tracker.sh start -v
+
+# Set custom timeout
+./tracker.sh stop -t 10
 
 # See all options
 ./tracker.sh -h
@@ -159,6 +168,7 @@ chmod +x tracker.sh
 - All functionality in one convenient script
 - Supports both direct and Docker execution
 - More monitoring and management features
+- Advanced options for timeout, verbose mode, and force operations
 
 ### 4. Direct Node.js
 
@@ -211,10 +221,10 @@ node src/index.js
 ### Testing the Tracker Without Starting It
 ```bash
 # On Windows
-node src/test.js
+node src/index.js test
 
 # On Linux/macOS
-node src/test.js
+node src/index.js test
 # OR
 ./tracker.sh test
 ```

@@ -1,4 +1,4 @@
-# REAL ID Appointment Tracker (Enhanced Version)
+# REAL ID Appointment Tracker v2.0.0
 
 A robust, feature-rich Node.js application that monitors the New Jersey MVC websites for REAL ID appointment availability and sends notifications when appointments become available. This enhanced version includes advanced error handling, improved parsing, structured logging, and many other reliability improvements.
 
