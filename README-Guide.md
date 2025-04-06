@@ -2,7 +2,34 @@
 
 This guide consolidates all the different ways to run the REAL ID Appointment Tracker across different operating systems and environments.
 
-## Quick Reference
+## Web Interface (New!)
+
+The REAL ID Appointment Tracker now includes a web-based interface that allows you to configure and manage the tracker through your browser without editing configuration files or using the command line.
+
+### Quick Reference
+
+| Method | Windows | Linux/macOS |
+|--------|---------|-------------|
+| **Web UI Docker** (Recommended) | `web-start.bat` | `./web-start.sh` |
+| **Stop Web UI Docker** | `web-stop.bat` | `./web-stop.sh` |
+| **Direct Web UI** | `npm run web` | `npm run web` |
+
+The web interface will be available at http://localhost:3000
+
+### Features
+
+- Configure email settings including Gmail App Password
+- Add recipient emails and phone emails for notifications
+- Set check interval
+- Start and stop the tracker
+- View real-time status information and appointment availability
+- Monitor live logs
+
+### Cross-Platform Compatibility
+
+The web interface is fully containerized using Docker, ensuring it works consistently across all operating systems including Windows, macOS, and Linux (Ubuntu). When you clone the repository on any system, the Docker setup ensures everything works the same way without system-specific configurations.
+
+## Command Line Options Quick Reference
 
 | Method | Windows | Linux/macOS |
 |--------|---------|-------------|

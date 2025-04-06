@@ -180,8 +180,18 @@ const CONFIG_SCHEMA = [
     required: false,
     type: 'string',
     validate: (email) => {
+      let emailToCheck = email;
+      
+      // Check if the email is in the format "Name <email@example.com>"
+      if (email.includes('<') && email.includes('>')) {
+        const matches = email.match(/<([^>]+)>/);
+        if (matches && matches[1]) {
+          emailToCheck = matches[1];
+        }
+      }
+      
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      return emailRegex.test(email) || 'Invalid email format';
+      return emailRegex.test(emailToCheck) || 'Invalid email format';
     }
   },
   {

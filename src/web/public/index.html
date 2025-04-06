@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REAL ID Appointment Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>REAL ID Appointment Tracker</h1>
+        </header>
+
+        <main>
+            <section class="panel" id="configuration-panel">
+                <h2>Configuration</h2>
+                <form id="config-form">
+                    <div class="form-group">
+                        <label for="sender-name">Sender Name</label>
+                        <input type="text" id="sender-name" name="sender-name" placeholder="Your Name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sender-email">Sender Email (Gmail)</label>
+                        <input type="email" id="sender-email" name="sender-email" placeholder="your.email@gmail.com" required>
+                        <small>Must be a Gmail address to use App Password</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="app-password">Gmail App Password</label>
+                        <input type="password" id="app-password" name="app-password" required>
+                        <div class="help-text">
+                            <details>
+                                <summary>What is an App Password? (click to expand)</summary>
+                                <p>An App Password is a 16-character code that gives an app or device permission to access your Google Account. App Passwords are more secure than using your regular Google password.</p>
+                                <h4>How to get an App Password:</h4>
+                                <ol>
+                                    <li>Go to your <a href="https://myaccount.google.com/apppasswords" target="_blank" rel="noopener noreferrer">Google Account App Passwords page</a></li>
+                                    <li>Sign in with your Google Account (you must have 2-Step Verification enabled)</li>
+                                    <li>Select "App" dropdown and choose "Mail"</li>
+                                    <li>Select "Device" dropdown and choose "Other (Custom name)"</li>
+                                    <li>Enter "REAL ID Tracker" as the custom name</li>
+                                    <li>Click "Generate"</li>
+                                    <li>Copy the 16-character password that appears</li>
+                                    <li>Paste it into the App Password field in this application</li>
+                                </ol>
+                            </details>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="recipient-emails">Recipient Email(s)</label>
+                        <div id="recipient-emails-container">
+                            <div class="email-input-group">
+                                <input type="email" class="recipient-email" name="recipient-email[]" placeholder="you@example.com" required>
+                                <button type="button" class="remove-email-btn" disabled>-</button>
+                            </div>
+                        </div>
+                        <button type="button" id="add-recipient-email">+ Add Another Email</button>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone-emails">Phone Email(s) for SMS</label>
+                        <div id="phone-emails-container">
+                            <div class="email-input-group">
+                                <input type="email" class="phone-email" name="phone-email[]" placeholder="phonenumber@carrier.com">
+                                <button type="button" class="remove-email-btn" disabled>-</button>
+                            </div>
+                        </div>
+                        <button type="button" id="add-phone-email">+ Add Another Phone Email</button>
+                        <small>Examples: number@vtext.com (Verizon), number@txt.att.net (AT&T), number@tmomail.net (T-Mobile)</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="check-interval">Check Interval (minutes)</label>
+                        <input type="number" id="check-interval" name="check-interval" min="1" value="10" required>
+                        <small class="warning">⚠️ Setting this too low may trigger rate limits or IP bans</small>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" id="save-config">Save Configuration</button>
+                    </div>
+                </form>
+            </section>
+
+            <section class="panel" id="control-panel">
+                <h2>Controls</h2>
+                <div class="control-buttons">
+                    <button id="start-button" class="primary-button">Start Tracker</button>
+                    <button id="stop-button" class="secondary-button" disabled>Stop Tracker</button>
+                </div>
+                <div class="status-display">
+                    <div id="status-indicator" class="status-indicator stopped">
+                        Status: <span id="status-text">Not Running</span>
+                    </div>
+                    <div class="status-details">
+                        <p>Last Check: <span id="last-check">Never</span></p>
+                        <p>Next Check: <span id="next-check">N/A</span></p>
+                        <p>Check Count: <span id="check-count">0</span></p>
+                        <p>Available Appointments:</p>
+                        <ul>
+                            <li>Regular DMV: <span id="regular-appointments">0</span></li>
+                            <li>Mobile Units: <span id="mobile-appointments">0</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="panel" id="log-panel">
+                <h2>Logs</h2>
+                <div class="log-container">
+                    <div id="log-display"></div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>REAL ID Appointment Tracker v2.0.0</p>
+        </footer>
+    </div>
+
+    <div id="toast" class="toast hidden"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>
