@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  tracker-web:
+    build:
+      context: .
+      dockerfile: src/web/Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+      - ./templates:/app/templates
+      - ./.env:/app/.env
+    restart: unless-stopped

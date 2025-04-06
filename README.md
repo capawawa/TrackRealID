@@ -82,6 +82,59 @@ The application supports the following configuration options:
 
 ## Usage
 
+### Web Interface (New!)
+
+The REAL ID Appointment Tracker now includes a web-based interface that allows you to configure and manage the tracker through your browser.
+
+#### Features
+
+- Configure email settings including Gmail App Password
+- Add recipient emails and phone emails for notifications
+- Set check interval
+- Start and stop the tracker
+- View real-time status information
+- Monitor live logs
+
+#### Starting the Web Interface
+
+**Using Docker (Recommended):**
+
+```bash
+# On Linux/macOS:
+chmod +x web-start.sh web-stop.sh  # Only needed once
+./web-start.sh
+
+# On Windows:
+web-start.bat
+```
+
+The web interface will be available at http://localhost:3000
+
+**Using npm:**
+
+```bash
+npm run web
+```
+
+#### Stopping the Web Interface
+
+**Using Docker:**
+
+```bash
+# On Linux/macOS:
+./web-stop.sh
+
+# On Windows:
+web-stop.bat
+```
+
+**Using keyboard shortcut:**
+Press Ctrl+C in the terminal where the web interface is running
+
+#### Cross-Platform Compatibility
+
+The web interface is fully containerized using Docker, ensuring it works consistently across all operating systems including Windows, macOS, and Linux (Ubuntu). When you clone the repository on any system, the Docker setup ensures everything works the same way without system-specific configurations.
+
 ### Using npm scripts
 
 ```bash
@@ -133,12 +186,25 @@ node src/index.js version
 │   ├── utils/            # Utilities
 │   │   ├── config.js     # Configuration management
 │   │   └── logger.js     # Enhanced logging
+│   ├── web/              # Web interface
+│   │   ├── public/       # Static web files
+│   │   │   ├── index.html # Web interface HTML
+│   │   │   ├── styles.css # Styling
+│   │   │   └── app.js    # Client-side JavaScript
+│   │   ├── server.js     # Web server
+│   │   └── index.js      # Web interface entry point
 │   ├── app.js            # Core application logic
 │   └── index.js          # Command-line interface
 ├── templates/            # Notification templates
 ├── data/                 # Data storage
 ├── debug/                # Debug files
 ├── .env.example          # Example environment variables
+├── docker-compose.yml    # Docker configuration for CLI tracker
+├── docker-compose-web.yml # Docker configuration for web interface
+├── web-start.sh          # Script to start web interface (Linux/macOS)
+├── web-start.bat         # Script to start web interface (Windows)
+├── web-stop.sh           # Script to stop web interface (Linux/macOS)
+├── web-stop.bat          # Script to stop web interface (Windows)
 └── README.md             # Documentation
 ```
 

@@ -2,6 +2,43 @@
 
 This document provides instructions for running the REAL ID Appointment Tracker on Windows.
 
+## Web Interface (New!)
+
+The REAL ID Appointment Tracker now includes a web-based interface that allows you to configure and manage the tracker through your browser without editing files or using the command line.
+
+### Starting the Web Interface
+
+**Using Docker (Recommended):**
+```
+web-start.bat
+```
+
+The web interface will be available at http://localhost:3000
+
+**Using npm:**
+```
+npm run web
+```
+
+### Stopping the Web Interface
+
+**Using Docker:**
+```
+web-stop.bat
+```
+
+**Using keyboard shortcut:**
+Press Ctrl+C in the terminal where the web interface is running
+
+### Features
+
+- Configure email settings including Gmail App Password
+- Add recipient emails and phone emails for notifications
+- Set check interval
+- Start and stop the tracker
+- View real-time status information and appointment availability
+- Monitor live logs
+
 ## Running with Docker (Recommended)
 
 The easiest way to run the tracker on Windows is using Docker, which was already set up in the original project.
