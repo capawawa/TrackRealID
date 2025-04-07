@@ -8,15 +8,8 @@ if %ERRORLEVEL% neq 0 (
     exit /b 1
 )
 
-REM Check if Docker Compose is installed
-where docker-compose >nul 2>nul
-if %ERRORLEVEL% neq 0 (
-    echo Docker Compose is not installed. Please install Docker Compose first.
-    exit /b 1
-)
-
 echo Starting REAL ID Appointment Tracker Web Interface...
-docker-compose -f docker-compose-web.yml up -d
+docker compose -f docker-compose-web.yml up -d
 
 REM Check if the container started successfully
 if %ERRORLEVEL% neq 0 (
