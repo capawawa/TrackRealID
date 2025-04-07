@@ -122,7 +122,7 @@ class Scraper {
     const $ = cheerio.load(html);
     const strategies = SELECTOR_STRATEGIES[type];
     
-    // Try each strategy in order
+    // First try our defined strategies
     for (const strategy of strategies) {
       logger.debug(`Trying ${strategy.name} for ${type} site`);
       
@@ -170,6 +170,44 @@ class Scraper {
       }
     }
     
+    // If standard strategies failed, try generic approach by looking for the service type
+    // and checking for any appointment count nearby
+    logger.info(`Trying alternative extraction method for ${type} site`);
+    
+    // Search for any element containing the REAL ID text
+    const searchText = type === 'regular' ? 'REAL ID' : 'REAL ID - MOBILE';
+    const realIdElements = $('*').filter(function() {
+      return $(this).text().trim().includes(searchText);
+    });
+    
+    if (realIdElements.length > 0) {
+      logger.info(`Found ${realIdElements.length} elements containing ${searchText}`);
+      
+      // For each potential REAL ID element, look for a count nearby
+      for (let i = 0; i < realIdElements.length; i++) {
+        const element = $(realIdElements[i]);
+        const parentCard = element.closest('.overlay-card, .cardButton, .card');
+        
+        if (parentCard.length) {
+          // Look for text containing digits
+          const countTexts = parentCard.find('*').filter(function() {
+            const text = $(this).text().trim();
+            return text.match(/\d+\s*Appointments?\s*Available/i);
+          });
+          
+          if (countTexts.length > 0) {
+            const countText = countTexts.first().text().trim();
+            const match = countText.match(/(\d+)/);
+            if (match) {
+              const count = parseInt(match[0], 10);
+              logger.info(`Successfully extracted count using alternative method: ${count}`);
+              return count;
+            }
+          }
+        }
+      }
+    }
+    
     // If all strategies failed, save HTML for debugging
     logger.warn(`Failed to parse ${type} site with all strategies`, { type });
     this._saveDebugHtml(html, type, 'parse-failed');
@@ -187,21 +225,27 @@ class Scraper {
     
     // Check if the page title contains expected text
     const title = $('title').text().toLowerCase();
-    if (!title.includes('appointment') && !title.includes('njmvc')) {
+    if (!title.includes('appointment') && !title.includes('njmvc') && !title.includes('telegov')) {
+      logger.warn(`Website title changed: ${title}`);
       return true;
     }
     
-    // Check if any strategy finds at least the title element
-    const strategies = SELECTOR_STRATEGIES[type];
-    for (const strategy of strategies) {
-      const titleElements = $(strategy.titleSelector);
-      if (titleElements.length > 0) {
-        return false; // Found at least one matching element
-      }
+    // Look for main page elements that should be present
+    const mainContent = $('#mainContent');
+    if (mainContent.length === 0) {
+      logger.warn('Main content element not found');
+      return true;
     }
     
-    // If we get here, the structure might have changed
-    return true;
+    // Check for any appointment card elements
+    const anyCardElements = $('.cardButton, .cardButtonTitle, .cardButtonCount');
+    if (anyCardElements.length === 0) {
+      logger.warn('No card elements found on page');
+      return true;
+    }
+    
+    // Page structure appears valid
+    return false;
   }
   
   /**
