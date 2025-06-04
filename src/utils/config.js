@@ -352,7 +352,7 @@ class Config {
    * @returns {boolean} True if configuration has required email settings
    */
   hasValidEmailSettings() {
-    return (
+    return Boolean(
       this.get('TRACKER_EMAIL_SENDER') &&
       this.get('TRACKER_EMAIL_RECIPIENT') &&
       this.get('TRACKER_EMAIL_PASSWORD')
