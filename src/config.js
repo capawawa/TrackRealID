@@ -1,7 +1,7 @@
 /**
  * Configuration for the REAL ID Appointment Tracker
- * 
- * Sensitive information like passwords can be provided via environment variables:
+ *
+ * Sensitive information like passwords must be provided via environment variables:
  * - TRACKER_EMAIL_SENDER: Email address to send notifications from
  * - TRACKER_EMAIL_RECIPIENT: Email address to send notifications to
  * - TRACKER_EMAIL_PASSWORD: App password for Gmail
@@ -19,30 +19,24 @@ module.exports = {
     regular: getEnv('TRACKER_REGULAR_URL', 'https://telegov.njportal.com/njmvc/AppointmentWizard'),
     mobile: getEnv('TRACKER_MOBILE_URL', 'https://telegov.njportal.com/njmvcmobileunit/AppointmentWizard')
   },
-  
+
   // URLs to send in notifications
   notificationUrls: {
     regular: getEnv('TRACKER_REGULAR_NOTIFICATION_URL', 'https://telegov.njportal.com/njmvc/AppointmentWizard/12'),
     mobile: getEnv('TRACKER_MOBILE_NOTIFICATION_URL', 'https://telegov.njportal.com/njmvcmobileunit/AppointmentWizard')
   },
-  
+
   // Check interval in minutes
   checkIntervalMinutes: parseInt(getEnv('TRACKER_CHECK_INTERVAL', '10')),
-  
-  // Email configuration
+
+  // Email configuration. Sensitive and personal values intentionally have no fallback.
   email: {
-    // Sender email (Gmail)
-    sender: getEnv('TRACKER_EMAIL_SENDER', '[REDACTED_EMAIL]'),
-    // Recipient email (Verizon email-to-text)
-    recipient: getEnv('TRACKER_EMAIL_RECIPIENT', '[REDACTED_RECIPIENT]'),
-    // App password for Gmail (you'll need to generate this)
-    // See: https://support.google.com/accounts/answer/185833
-    // IMPORTANT: Prefer to set this via environment variable
-    password: getEnv('TRACKER_EMAIL_PASSWORD', '[REDACTED_APP_PASSWORD]'), // Gmail app password
-    // Email subject
+    sender: getEnv('TRACKER_EMAIL_SENDER', ''),
+    recipient: getEnv('TRACKER_EMAIL_RECIPIENT', ''),
+    password: getEnv('TRACKER_EMAIL_PASSWORD', ''),
     subject: getEnv('TRACKER_EMAIL_SUBJECT', 'REAL ID Appointment Available!'),
   },
-  
+
   // Logging
   logFile: getEnv('TRACKER_LOG_FILE', 'tracker.log')
 };

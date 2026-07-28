@@ -110,6 +110,13 @@ web-start.bat
 
 The web interface will be available at http://localhost:3000
 
+The management interface fails closed unless both
+`TRACKER_WEB_ADMIN_USER` and `TRACKER_WEB_ADMIN_PASSWORD` are set. The
+password must contain at least 16 characters. The server binds to
+`127.0.0.1` by default; Docker publishes the management port on loopback
+only. Put it behind an authenticated HTTPS reverse proxy or a private
+network such as Tailscale before allowing remote access.
+
 **Using npm:**
 
 ```bash
