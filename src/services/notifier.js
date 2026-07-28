@@ -16,6 +16,30 @@ const path = require('path');
 const logger = require('../utils/logger').child('notifier');
 const { config } = require('../utils/config');
 
+const SMS_GATEWAY_DOMAINS = new Set([
+  'vtext.com',
+  'txt.att.net',
+  'tmomail.net',
+  'messaging.sprintpcs.com',
+  'msg.fi.google.com'
+]);
+
+function splitRecipients(value) {
+  return String(value || '')
+    .split(',')
+    .map((recipient) => recipient.trim())
+    .filter(Boolean);
+}
+
+function isSmsGatewayRecipient(recipient) {
+  const separator = recipient.lastIndexOf('@');
+  if (separator < 0) {
+    return false;
+  }
+
+  return SMS_GATEWAY_DOMAINS.has(recipient.slice(separator + 1).toLowerCase());
+}
+
 class Notifier {
   constructor() {
     this.transporter = null;
@@ -213,6 +237,9 @@ class Notifier {
     
     const siteName = type === 'regular' ? 'Regular DMV' : 'Mobile Unit';
     const notificationUrl = config.get(`TRACKER_${type.toUpperCase()}_NOTIFICATION_URL`);
+    const recipients = splitRecipients(config.get('TRACKER_EMAIL_RECIPIENT'));
+    const smsRecipients = recipients.filter(isSmsGatewayRecipient);
+    const emailRecipients = recipients.filter((recipient) => !isSmsGatewayRecipient(recipient));
     
     if (!notificationUrl) {
       logger.warn(`Cannot send notification: Missing notification URL for ${type} site`);
@@ -230,36 +257,33 @@ class Notifier {
           await new Promise(resolve => setTimeout(resolve, delay));
         }
         
-        // Send to Verizon SMS gateway with ultra-short message
-        const phoneNumber = '[REDACTED_RECIPIENT]';
-        const shortText = `${count} REAL ID appt: ${notificationUrl}`;
-        
-        const smsOptions = {
-          from: config.get('TRACKER_EMAIL_SENDER'),
-          to: phoneNumber,
-          subject: 'REAL ID Appt',
-          text: shortText
-          // No HTML for SMS to ensure compatibility
-        };
-        
-        logger.info(`Sending SMS-friendly message to ${phoneNumber}`);
-        await this.transporter.sendMail(smsOptions);
-        
-        // Also send to email with full content if configured
-        const emailAddress = '[REDACTED_EMAIL]';
-        if (emailAddress) {
+        if (smsRecipients.length > 0) {
+          const shortText = `${count} REAL ID appt: ${notificationUrl}`;
+          const smsOptions = {
+            from: config.get('TRACKER_EMAIL_SENDER'),
+            to: smsRecipients.join(','),
+            subject: 'REAL ID Appt',
+            text: shortText
+            // No HTML for SMS to ensure compatibility
+          };
+
+          logger.info('Sending SMS-friendly notification');
+          await this.transporter.sendMail(smsOptions);
+        }
+
+        if (emailRecipients.length > 0) {
           const text = `${notificationUrl} - ${count} REAL ID appointment(s) available at ${siteName}!`;
           const html = this.getEmailHtml(type, count);
           
           const emailOptions = {
             from: config.get('TRACKER_EMAIL_SENDER'),
-            to: emailAddress,
+            to: emailRecipients.join(','),
             subject: config.get('TRACKER_EMAIL_SUBJECT'),
             text: text,
             html: html
           };
           
-          logger.info(`Sending detailed email to ${emailAddress}`);
+          logger.info('Sending detailed email notification');
           await this.transporter.sendMail(emailOptions);
         }
         logger.info(`Notification sent for ${type} site (${count} appointments)`);
@@ -289,23 +313,24 @@ class Notifier {
     }
     
     try {
-      // 1. Send test SMS to phone
-      const phoneNumber = '[REDACTED_RECIPIENT]';
-      const shortText = `Test: REAL ID tracker working!`;
-      
-      const smsOptions = {
-        from: config.get('TRACKER_EMAIL_SENDER'),
-        to: phoneNumber,
-        subject: 'Test',
-        text: shortText
-      };
-      
-      logger.info(`Sending test SMS to ${phoneNumber}`);
-      await this.transporter.sendMail(smsOptions);
-      
-      // 2. Send detailed test email
-      const emailAddress = '[REDACTED_EMAIL]';
-      if (emailAddress) {
+      const recipients = splitRecipients(config.get('TRACKER_EMAIL_RECIPIENT'));
+      const smsRecipients = recipients.filter(isSmsGatewayRecipient);
+      const emailRecipients = recipients.filter((recipient) => !isSmsGatewayRecipient(recipient));
+
+      if (smsRecipients.length > 0) {
+        const shortText = 'Test: REAL ID tracker working!';
+        const smsOptions = {
+          from: config.get('TRACKER_EMAIL_SENDER'),
+          to: smsRecipients.join(','),
+          subject: 'Test',
+          text: shortText
+        };
+
+        logger.info('Sending test SMS notification');
+        await this.transporter.sendMail(smsOptions);
+      }
+
+      if (emailRecipients.length > 0) {
         const text = `This is a test notification from your REAL ID Appointment Tracker. If you're receiving this, your notification system is working correctly.`;
         
         const html = `
@@ -323,13 +348,13 @@ class Notifier {
         
         const emailOptions = {
           from: config.get('TRACKER_EMAIL_SENDER'),
-          to: emailAddress,
+          to: emailRecipients.join(','),
           subject: 'REAL ID Tracker - Test Notification',
           text: text,
           html: html
         };
         
-        logger.info(`Sending detailed test email to ${emailAddress}`);
+        logger.info('Sending detailed test email notification');
         await this.transporter.sendMail(emailOptions);
       }
       
@@ -343,3 +368,5 @@ class Notifier {
 }
 
 module.exports = new Notifier();
+module.exports.splitRecipients = splitRecipients;
+module.exports.isSmsGatewayRecipient = isSmsGatewayRecipient;
