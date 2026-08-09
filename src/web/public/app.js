@@ -196,7 +196,8 @@ function saveConfig(event) {
     fetch('/api/config', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'X-Tracker-Admin': '1'
         },
         body: JSON.stringify(configData)
     })
@@ -270,7 +271,10 @@ function updateRemoveButtons(container) {
 // Start the tracker
 function startTracker() {
     fetch('/api/start', {
-        method: 'POST'
+        method: 'POST',
+        headers: {
+            'X-Tracker-Admin': '1'
+        }
     })
     .then(response => response.json())
     .then(data => {
@@ -292,7 +296,10 @@ function startTracker() {
 // Stop the tracker
 function stopTracker() {
     fetch('/api/stop', {
-        method: 'POST'
+        method: 'POST',
+        headers: {
+            'X-Tracker-Admin': '1'
+        }
     })
     .then(response => response.json())
     .then(data => {

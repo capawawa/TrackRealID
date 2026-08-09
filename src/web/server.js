@@ -6,6 +6,7 @@
 
 const express = require('express');
 const http = require('http');
+const crypto = require('crypto');
 const path = require('path');
 const fs = require('fs');
 const bodyParser = require('body-parser');
@@ -17,6 +18,16 @@ const logger = require('../utils/logger');
 const app = express();
 const server = http.createServer(app);
 const PORT = process.env.PORT || 3000;
+const HOST = process.env.HOST || '127.0.0.1';
+const ADMIN_USER = process.env.TRACKER_WEB_ADMIN_USER;
+const ADMIN_PASSWORD = process.env.TRACKER_WEB_ADMIN_PASSWORD;
+
+if (!ADMIN_USER || !ADMIN_PASSWORD || ADMIN_PASSWORD.length < 16) {
+  throw new Error(
+    'TRACKER_WEB_ADMIN_USER and TRACKER_WEB_ADMIN_PASSWORD are required; ' +
+    'the password must contain at least 16 characters'
+  );
+}
 
 // Create app instance for tracker
 const trackerApp = new App();
@@ -24,9 +35,84 @@ let trackerRunning = false;
 let logBuffer = [];
 const MAX_LOG_ENTRIES = 500;
 
+function constantTimeEqual(left, right) {
+  const leftBuffer = Buffer.from(String(left));
+  const rightBuffer = Buffer.from(String(right));
+
+  return leftBuffer.length === rightBuffer.length &&
+    crypto.timingSafeEqual(leftBuffer, rightBuffer);
+}
+
+function parseBasicAuthorization(header) {
+  if (!header || !header.startsWith('Basic ')) {
+    return null;
+  }
+
+  try {
+    const decoded = Buffer.from(header.slice(6), 'base64').toString('utf8');
+    const separator = decoded.indexOf(':');
+
+    if (separator < 0) {
+      return null;
+    }
+
+    return {
+      username: decoded.slice(0, separator),
+      password: decoded.slice(separator + 1)
+    };
+  } catch (error) {
+    return null;
+  }
+}
+
+function requireAdminAuthentication(req, res, next) {
+  const credentials = parseBasicAuthorization(req.get('authorization'));
+  const authenticated = credentials &&
+    constantTimeEqual(credentials.username, ADMIN_USER) &&
+    constantTimeEqual(credentials.password, ADMIN_PASSWORD);
+
+  if (!authenticated) {
+    res.set('WWW-Authenticate', 'Basic realm="TrackRealID", charset="UTF-8"');
+    return res.status(401).json({
+      success: false,
+      message: 'Authentication required'
+    });
+  }
+
+  return next();
+}
+
+function requireMutationHeader(req, res, next) {
+  if (['GET', 'HEAD', 'OPTIONS'].includes(req.method)) {
+    return next();
+  }
+
+  if (
+    req.get('x-tracker-admin') !== '1' ||
+    req.get('sec-fetch-site') === 'cross-site'
+  ) {
+    return res.status(403).json({
+      success: false,
+      message: 'Cross-site request rejected'
+    });
+  }
+
+  return next();
+}
+
 // Middleware
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.disable('x-powered-by');
+app.get('/health', (req, res) => {
+  res.json({ status: 'ok' });
+});
+app.use(requireAdminAuthentication);
+app.use(requireMutationHeader);
+app.use((req, res, next) => {
+  res.set('Cache-Control', 'no-store');
+  next();
+});
+app.use(bodyParser.json({ limit: '16kb' }));
+app.use(bodyParser.urlencoded({ extended: true, limit: '16kb' }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Custom middleware to capture logs
@@ -226,8 +312,8 @@ app.get('/', (req, res) => {
 });
 
 // Start the server
-server.listen(PORT, () => {
-  console.log(`REAL ID Appointment Tracker Web Interface running on http://localhost:${PORT}`);
+server.listen(PORT, HOST, () => {
+  console.log(`REAL ID Appointment Tracker Web Interface running on http://${HOST}:${PORT}`);
 });
 
 // Handle graceful shutdown

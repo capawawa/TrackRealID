@@ -6,9 +6,12 @@ services:
       context: .
       dockerfile: src/web/Dockerfile
     ports:
-      - "3000:3000"
+      - "127.0.0.1:3000:3000"
     environment:
       - PORT=3000
+      - HOST=0.0.0.0
+      - TRACKER_WEB_ADMIN_USER=${TRACKER_WEB_ADMIN_USER:?Set TRACKER_WEB_ADMIN_USER}
+      - TRACKER_WEB_ADMIN_PASSWORD=${TRACKER_WEB_ADMIN_PASSWORD:?Set TRACKER_WEB_ADMIN_PASSWORD}
     volumes:
       - ./data:/app/data
       - ./logs:/app/logs

@@ -9,7 +9,8 @@
     "status": "node src/index.js status",
     "help": "node src/index.js help",
     "version": "node src/index.js version",
-    "web": "node src/web/index.js"
+    "web": "node src/web/index.js",
+    "test:security": "node test/security.test.js && node test/notifier-recipients.test.js"
   },
   "bin": {
     "track-real-id": "./src/index.js"
